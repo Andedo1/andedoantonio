@@ -16,7 +16,75 @@ class ReceWorks extends StatelessWidget {
         color: Colors.purple.withOpacity(0.4),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        HireMe(),
+        Container(
+          width: double.infinity,
+          height: 50,
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Positioned(
+                left: 0,
+                right: 0,
+                top: -30,
+                child: Center(
+                  child: Container(
+                    height: 60,
+                    width: 440,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                              offset: Offset(0, 20),
+                              color: Colors.black.withOpacity(0.4),
+                              blurRadius: 10)
+                        ]),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset("assets/images/email.png")
+                                ],
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    "Starting a New Project?",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    "get a detailed estimate",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          HireMe()
+                        ]),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
         Container(
           width: double.infinity,
           margin: EdgeInsets.only(

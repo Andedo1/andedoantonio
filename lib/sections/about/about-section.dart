@@ -5,19 +5,28 @@ import 'components/skill.dart';
 import 'components/strong-area.dart';
 import 'components/tools.dart';
 
-class AboutSection extends StatelessWidget {
+class AboutSection extends StatefulWidget {
   AboutSection({Key? key}) : super(key: key);
 
   @override
+  State<AboutSection> createState() => _AboutSectionState();
+}
+
+class _AboutSectionState extends State<AboutSection> {
+  @override
   Widget build(BuildContext context) {
+    final double size = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
-      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      margin: EdgeInsets.symmetric(
+          horizontal: size < 400 ? 0 : 10, vertical: size < 400 ? 10 : 30),
+      padding:
+          EdgeInsets.symmetric(horizontal: size < 400 ? 0 : 20, vertical: 20),
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -25,7 +34,7 @@ class AboutSection extends StatelessWidget {
             alignment: WrapAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 margin: EdgeInsets.only(top: 20, left: 10),
                 height: 250,
                 width: 300,
@@ -61,7 +70,7 @@ class AboutSection extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 height: 250,
                 width: 300,
                 margin: EdgeInsets.only(left: 10, top: 20),
@@ -83,7 +92,7 @@ class AboutSection extends StatelessWidget {
               ),
               //Skill showcase
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 height: 250,
                 width: 300,
                 margin: EdgeInsets.only(left: 10, top: 20),
@@ -120,7 +129,7 @@ class AboutSection extends StatelessWidget {
 
               //My strong areas
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                 height: 250,
                 width: 300,
                 margin: EdgeInsets.only(left: 10, top: 20),
@@ -161,7 +170,7 @@ class AboutSection extends StatelessWidget {
 
               //Years of experience
               Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   height: 250,
                   width: 300,
                   margin: EdgeInsets.only(left: 10, top: 20),
@@ -226,7 +235,7 @@ class AboutSection extends StatelessWidget {
                 height: 250,
                 width: 300,
                 padding: EdgeInsets.symmetric(
-                  horizontal: 40,
+                  horizontal: 30,
                   vertical: 20,
                 ),
                 margin: EdgeInsets.only(left: 10, top: 20),
@@ -283,6 +292,7 @@ class AboutSection extends StatelessWidget {
                 hoverColor: Colors.green.withOpacity(0.4),
                 onTap: () {
                   //handle tap hire me!
+                  terms(context);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 30),
@@ -339,5 +349,33 @@ class AboutSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<dynamic> terms(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text("Employment type"),
+              elevation: 1,
+              content: Column(children: [
+                Row(
+                  children: [
+                    Text("Full Time"),
+                    Checkbox(value: false, onChanged: ((value) => true))
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("Part Time"),
+                    Checkbox(value: false, onChanged: ((value) => true))
+                  ],
+                ),
+              ]),
+              actions: [TextButton(onPressed: submit, child: Text("Submit"))],
+            ));
+  }
+
+  void submit() {
+    Navigator.of(context).pop();
   }
 }

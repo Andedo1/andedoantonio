@@ -1,6 +1,6 @@
 # andedoantonio
 
-A new Flutter project.
+Andedo Antonio's portfolio
 
 ## Getting Started
 

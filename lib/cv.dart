@@ -30,7 +30,10 @@ class _PdfViewState extends State<PdfView> {
           )
         ],
       ),
-      body: SfPdfViewer.asset("pdf/resume.pdf"),
+      body: SfPdfViewer.network(
+        "assets/pdf/resume.pdf",
+        enableDoubleTapZooming: true,
+      ),
     );
   }
 }

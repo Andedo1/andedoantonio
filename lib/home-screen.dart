@@ -17,7 +17,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final double size = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.amber,
+        centerTitle: true,
+        title: size > 720
+            ? Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                TextButton(onPressed: () {}, child: Text("About")),
+                TextButton(onPressed: () {}, child: Text("Services")),
+                TextButton(onPressed: () {}, child: Text("Projects")),
+                TextButton(onPressed: () {}, child: Text("Testimonial")),
+                TextButton(onPressed: () {}, child: Text("Contact"))
+              ])
+            : const SizedBox(),
+        actions: size < 720
+            ? [IconButton(onPressed: () {}, icon: Icon(Icons.menu))]
+            : [],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 import 'components/glass-content.dart';
-import 'components/menu.dart';
 
 class HomeSection extends StatelessWidget {
   HomeSection({Key? key}) : super(key: key);
@@ -38,12 +37,6 @@ class HomeSection extends StatelessWidget {
                     size: size,
                   ),
                 )),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Menu(size: size, menuItems: menuItems),
-            )
           ],
         ),
       ),
