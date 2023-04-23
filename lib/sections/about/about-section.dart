@@ -1,4 +1,5 @@
 import 'package:andedoantonio/cv.dart';
+import 'package:andedoantonio/sections/experience/components/hire-me.dart';
 import 'package:flutter/material.dart';
 import 'components/my-story.dart';
 import 'components/skill.dart';
@@ -6,7 +7,9 @@ import 'components/strong-area.dart';
 import 'components/tools.dart';
 
 class AboutSection extends StatefulWidget {
-  AboutSection({Key? key}) : super(key: key);
+  const AboutSection({Key? key, required this.scaffoldkey}) : super(key: key);
+
+  final scaffoldkey;
 
   @override
   State<AboutSection> createState() => _AboutSectionState();
@@ -288,34 +291,9 @@ class _AboutSectionState extends State<AboutSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                hoverColor: Colors.green.withOpacity(0.4),
-                onTap: () {
-                  //handle tap hire me!
-                  terms(context);
-                },
-                child: Container(
-                  margin: EdgeInsets.only(top: 30),
-                  height: 30,
-                  width: 110,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.black.withOpacity(0.2),
-                      border: Border.all(
-                          color: Colors.black.withOpacity(0.5),
-                          width: 1,
-                          style: BorderStyle.solid)),
-                  child: Center(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/handshake.png",
-                      ),
-                      Text("Hire Me!"),
-                    ],
-                  )),
-                ),
+              Container(
+                margin: EdgeInsets.only(top: 30),
+                child: HireMe(scaffoldkey: widget.scaffoldkey),
               ),
               InkWell(
                 onTap: () {
@@ -349,33 +327,5 @@ class _AboutSectionState extends State<AboutSection> {
         ],
       ),
     );
-  }
-
-  Future<dynamic> terms(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text("Employment type"),
-              elevation: 1,
-              content: Column(children: [
-                Row(
-                  children: [
-                    Text("Full Time"),
-                    Checkbox(value: false, onChanged: ((value) => true))
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text("Part Time"),
-                    Checkbox(value: false, onChanged: ((value) => true))
-                  ],
-                ),
-              ]),
-              actions: [TextButton(onPressed: submit, child: Text("Submit"))],
-            ));
-  }
-
-  void submit() {
-    Navigator.of(context).pop();
   }
 }

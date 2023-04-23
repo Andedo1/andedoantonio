@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import 'components/hire-me.dart';
 import 'components/recent-job.dart';
 
-class ReceWorks extends StatelessWidget {
-  const ReceWorks({Key? key}) : super(key: key);
+class ReceWorks extends StatefulWidget {
+  const ReceWorks({Key? key, required this.scaffoldkey}) : super(key: key);
 
+  final scaffoldkey;
+
+  @override
+  State<ReceWorks> createState() => _ReceWorksState();
+}
+
+class _ReceWorksState extends State<ReceWorks> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,7 +84,9 @@ class ReceWorks extends StatelessWidget {
                               )
                             ],
                           ),
-                          HireMe()
+                          HireMe(
+                            scaffoldkey: widget.scaffoldkey,
+                          )
                         ]),
                   ),
                 ),

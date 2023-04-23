@@ -15,10 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final double size = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: scaffoldkey,
       appBar: AppBar(
         backgroundColor: Colors.amber,
         centerTitle: true,
@@ -39,11 +41,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             HomeSection(),
-            AboutSection(),
+            AboutSection(
+              scaffoldkey: scaffoldkey,
+            ),
             ServiceSection(),
-            ReceWorks(),
+            ReceWorks(
+              scaffoldkey: scaffoldkey,
+            ),
             FeedbackSection(),
-            ContactSection(),
+            ContactSection(
+              scaffoldKey: scaffoldkey,
+            ),
             FooterSection()
           ],
         ),

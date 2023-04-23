@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class HireMe extends StatefulWidget {
-  const HireMe({
-    Key? key,
-  }) : super(key: key);
+  const HireMe({Key? key, required this.scaffoldkey}) : super(key: key);
 
+  final scaffoldkey;
   @override
   State<HireMe> createState() => _HireMeState();
 }
 
 class _HireMeState extends State<HireMe> {
+  int? checked = 0;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +17,77 @@ class _HireMeState extends State<HireMe> {
       children: [
         InkWell(
           onTap: () {
-            newMethod(context);
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      insetPadding: EdgeInsets.symmetric(vertical: 50),
+                      clipBehavior: Clip.none,
+                      title: Text("Job Details"),
+                      elevation: 1,
+                      content: StatefulBuilder(
+                        builder: ((context, setState) {
+                          return Container(
+                            height: 250,
+                            width: 150,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        labelText: "employer"),
+                                  ),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        labelText: "position"),
+                                  ),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        labelText: "email"),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("Full Time"),
+                                      Radio(
+                                          splashRadius: 0.5,
+                                          value: 1,
+                                          groupValue: checked,
+                                          onChanged: (int? val) {
+                                            setState(() {
+                                              checked = val;
+                                            });
+                                          }),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("Part Time"),
+                                      Radio(
+                                          splashRadius: 0.5,
+                                          value: 2,
+                                          groupValue: checked,
+                                          onChanged: (int? val) {
+                                            setState(() {
+                                              checked = val;
+                                            });
+                                          })
+                                    ],
+                                  ),
+                                ]),
+                          );
+                        }),
+                      ),
+                      actions: [
+                        TextButton(onPressed: submit, child: Text("Submit"))
+                      ],
+                    ));
           },
           child: Container(
             height: 30,
@@ -50,47 +120,6 @@ class _HireMeState extends State<HireMe> {
         )
       ],
     );
-  }
-
-  Future<dynamic> newMethod(BuildContext context) {
-    bool? checkBoxValue = false;
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              insetPadding: EdgeInsets.symmetric(vertical: 50),
-              clipBehavior: Clip.none,
-              title: Text("Employment type"),
-              elevation: 1,
-              content: Container(
-                height: 100,
-                width: 150,
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text("Full Time"),
-                      Checkbox(value: false, onChanged: ((value) => true))
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text("Part Time"),
-                      Checkbox(
-                          checkColor: Colors.green,
-                          activeColor: Colors.red,
-                          value: checkBoxValue,
-                          onChanged: ((bool? value) {
-                            setState(() {
-                              checkBoxValue = value;
-                            });
-                          }))
-                    ],
-                  ),
-                ]),
-              ),
-              actions: [TextButton(onPressed: submit, child: Text("Submit"))],
-            ));
   }
 
   void submit() {
