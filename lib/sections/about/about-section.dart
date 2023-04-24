@@ -1,6 +1,7 @@
-import 'package:andedoantonio/cv.dart';
 import 'package:andedoantonio/sections/experience/components/hire-me.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'components/my-story.dart';
 import 'components/skill.dart';
 import 'components/strong-area.dart';
@@ -16,8 +17,10 @@ class AboutSection extends StatefulWidget {
 }
 
 class _AboutSectionState extends State<AboutSection> {
+  final Reference reference = FirebaseStorage.instance.ref('resume.pdf');
   @override
   Widget build(BuildContext context) {
+    String message;
     final double size = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.symmetric(
@@ -298,8 +301,7 @@ class _AboutSectionState extends State<AboutSection> {
               InkWell(
                 onTap: () {
                   // handle on tap
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => PdfView()));
+                  download(reference);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 30, left: 35),
@@ -327,5 +329,15 @@ class _AboutSectionState extends State<AboutSection> {
         ],
       ),
     );
+  }
+
+  download(Reference ref) async {
+    final url = await ref.getDownloadURL();
+    final Uri cvUrl = Uri.parse(url);
+    if (await canLaunchUrl(cvUrl)) {
+      await launchUrl(cvUrl);
+    } else {
+      throw 'Could not launch $cvUrl';
+    }
   }
 }

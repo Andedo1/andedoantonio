@@ -1,7 +1,17 @@
 import 'package:andedoantonio/home-screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+    apiKey: "AIzaSyAXLTk2eN4a-SDZCbjnXpLVy2FD5naVaMM",
+    appId: "1:440779770877:web:06f8397ec1009b41772794",
+    messagingSenderId: "440779770877",
+    projectId: "andedoantonio",
+    storageBucket: "andedoantonio.appspot.com",
+  ));
   runApp(const MyApp());
 }
 
