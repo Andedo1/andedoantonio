@@ -15,24 +15,91 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final homeKey = GlobalKey();
+  final aboutKey = GlobalKey();
+  final servicesKey = GlobalKey();
+  final contactKey = GlobalKey();
+  final feedbackKey = GlobalKey();
+  final projectKey = GlobalKey();
   final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+
+  Future scrollToSection(itemKey) async {
+    final context = itemKey.currentContext;
+    await Scrollable.ensureVisible(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final double size = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldkey,
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: size > 720
             ? Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                TextButton(onPressed: () {}, child: Text("About")),
-                TextButton(onPressed: () {}, child: Text("Services")),
-                TextButton(onPressed: () {}, child: Text("Projects")),
-                TextButton(onPressed: () {}, child: Text("Testimonial")),
-                TextButton(onPressed: () {}, child: Text("Contact"))
+                Text(
+                  "Welcome to My Portfolio",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          scrollToSection(aboutKey);
+                        },
+                        child: Text(
+                          "About",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          scrollToSection(servicesKey);
+                        },
+                        child: Text(
+                          "Services",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          scrollToSection(projectKey);
+                        },
+                        child: Text(
+                          "Projects",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          scrollToSection(feedbackKey);
+                        },
+                        child: Text(
+                          "Testimonial",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          scrollToSection(contactKey);
+                        },
+                        child: Text(
+                          "Contact",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        )),
+                  ],
+                )
               ])
-            : const SizedBox(),
+            : const SizedBox(
+                child: Text(
+                  "Welcome to My Portfolio",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
         actions: size < 720
             ? [IconButton(onPressed: () {}, icon: Icon(Icons.menu))]
             : [],
@@ -40,16 +107,25 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            HomeSection(),
+            HomeSection(
+              key: homeKey,
+            ),
             AboutSection(
+              key: aboutKey,
               scaffoldkey: scaffoldkey,
             ),
-            ServiceSection(),
+            ServiceSection(
+              key: servicesKey,
+            ),
             ReceWorks(
+              key: projectKey,
               scaffoldkey: scaffoldkey,
             ),
-            FeedbackSection(),
+            FeedbackSection(
+              key: feedbackKey,
+            ),
             ContactSection(
+              key: contactKey,
               scaffoldKey: scaffoldkey,
             ),
             FooterSection()

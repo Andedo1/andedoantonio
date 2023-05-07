@@ -20,7 +20,6 @@ class _AboutSectionState extends State<AboutSection> {
   final Reference reference = FirebaseStorage.instance.ref('resume.pdf');
   @override
   Widget build(BuildContext context) {
-    String message;
     final double size = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.symmetric(
@@ -257,7 +256,7 @@ class _AboutSectionState extends State<AboutSection> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
+                    const Text(
                       "Soft Skills",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -265,7 +264,7 @@ class _AboutSectionState extends State<AboutSection> {
                           color: Colors.black),
                     ),
                     Column(
-                      children: [
+                      children: const <Widget>[
                         SoftSkill(
                           skill: "Effective communication",
                         ),
@@ -299,9 +298,9 @@ class _AboutSectionState extends State<AboutSection> {
                 child: HireMe(scaffoldkey: widget.scaffoldkey),
               ),
               InkWell(
-                onTap: () {
+                onTap: () async {
                   // handle on tap
-                  download(reference);
+                  await download(reference);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 30, left: 35),
@@ -331,7 +330,7 @@ class _AboutSectionState extends State<AboutSection> {
     );
   }
 
-  download(Reference ref) async {
+  Future<void> download(Reference ref) async {
     final url = await ref.getDownloadURL();
     final Uri cvUrl = Uri.parse(url);
     if (await canLaunchUrl(cvUrl)) {

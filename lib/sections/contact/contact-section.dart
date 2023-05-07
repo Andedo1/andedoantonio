@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({Key? key, required this.scaffoldKey}) : super(key: key);
@@ -9,12 +10,6 @@ class ContactSection extends StatefulWidget {
 }
 
 class _ContactSectionState extends State<ContactSection> {
-  final formKey = GlobalKey<FormState>();
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController typeController = new TextEditingController();
-  TextEditingController budgetController = new TextEditingController();
-  TextEditingController descriptionController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     final double size = MediaQuery.of(context).size.width;
@@ -26,156 +21,69 @@ class _ContactSectionState extends State<ContactSection> {
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Container(
+          padding: size > 850
+              ? EdgeInsets.symmetric(horizontal: 250)
+              : EdgeInsets.symmetric(horizontal: 25),
           width: double.infinity,
-          margin: EdgeInsets.only(top: 30, left: 60),
-          child: Row(
+          margin: EdgeInsets.only(top: 100, bottom: 100),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.1,
+              //FaIcon(),
+              Text(
+                "reach me at any time.",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 8,
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "reach me at any time.",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 8,
+              Text(
+                "Get In Touch",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "You can get in touch with me at any time and I will try my best to get back to you on a short notice. I'm actively seaching for a job and therefore I'll be so grateful for any employment leads. I'm also open to collaboration on open source projects, so don't hesitate to contact me.",
+                style: TextStyle(
+                    wordSpacing: 2.5,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black),
+                textAlign: TextAlign.justify,
+                softWrap: true,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Contact me",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          side: BorderSide(color: Colors.black38, width: 2),
+                          backgroundColor: Colors.blue.withOpacity(0.7),
+                          fixedSize: Size(160, 50),
+                          padding: EdgeInsets.all(10)),
                     ),
                   ),
-                  Text(
-                    "Contact Me",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold),
-                  ),
                 ],
-              ),
+              )
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-          width: size > 720 ? size * 0.7 : size * 0.9,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.facebook,
-                        color: Colors.blue,
-                      )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.wechat,
-                        color: Colors.amber,
-                      )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.call,
-                        color: Colors.green,
-                      )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.telegram,
-                        color: Colors.green,
-                      ))
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Form(
-                key: formKey,
-                child: Wrap(
-                  children: [
-                    Container(
-                      height: 50,
-                      child: TextFormField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          alignLabelWithHint: true,
-                          labelText: "Enter your name",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return 'Enter your valid name';
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          alignLabelWithHint: true,
-                          labelText: "Email",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,5}$')
-                                  .hasMatch(value)) {
-                            return 'Enter valid email';
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      child: TextFormField(
-                        controller: typeController,
-                        decoration: InputDecoration(
-                          alignLabelWithHint: true,
-                          labelText: "Message",
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return 'Enter valid message';
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Center(
-                  child: ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(
-                            "You message has been deliverd successfully")));
-                  }
-                },
-                child: Text("Contact me"),
-              ))
-            ],
-          ),
-        )
       ]),
     );
   }

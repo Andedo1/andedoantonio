@@ -15,12 +15,18 @@ class ReceWorks extends StatefulWidget {
 class _ReceWorksState extends State<ReceWorks> {
   @override
   Widget build(BuildContext context) {
+    final double size = MediaQuery.of(context).size.width;
     return Container(
-      //padding: EdgeInsets.only(top: 100, left: 50),
       width: double.infinity,
-      padding: EdgeInsets.only(bottom: 30),
+      padding: size > 750
+          ? EdgeInsets.symmetric(
+              horizontal: 200,
+            )
+          : EdgeInsets.symmetric(
+              horizontal: 25,
+            ),
       decoration: BoxDecoration(
-        color: Colors.purple.withOpacity(0.4),
+        color: Colors.blue.withOpacity(0.6),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Container(
@@ -32,11 +38,11 @@ class _ReceWorksState extends State<ReceWorks> {
               Positioned(
                 left: 0,
                 right: 0,
-                top: -30,
+                top: -40,
                 child: Center(
                   child: Container(
                     height: 60,
-                    width: 440,
+                    width: size > 750 ? size * 0.5 : size * 0.8,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
@@ -50,17 +56,9 @@ class _ReceWorksState extends State<ReceWorks> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset("assets/images/email.png")
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
+                              Image.asset("assets/images/email.png"),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,12 +96,10 @@ class _ReceWorksState extends State<ReceWorks> {
           width: double.infinity,
           margin: EdgeInsets.only(
             top: 50,
+            bottom: 50,
           ),
           child: Row(
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.17,
-              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -128,13 +124,18 @@ class _ReceWorksState extends State<ReceWorks> {
         ),
         Wrap(
           clipBehavior: Clip.none,
-          alignment: WrapAlignment.center,
+          alignment: WrapAlignment.start,
+          spacing: 50,
+          runSpacing: 50,
           children: [
             RecentJob(),
             RecentJob(),
             RecentJob(),
             RecentJob(),
           ],
+        ),
+        SizedBox(
+          height: 100,
         )
       ]),
     );

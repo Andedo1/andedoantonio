@@ -8,13 +8,8 @@ class RecentJob extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        height: 160,
+        height: 200,
         width: 400,
-        margin: EdgeInsets.only(
-          top: 20,
-          left: 10,
-        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,

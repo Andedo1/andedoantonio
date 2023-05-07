@@ -4,20 +4,24 @@ import 'components/feedback-card.dart';
 
 class FeedbackSection extends StatelessWidget {
   const FeedbackSection({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final double size = MediaQuery.of(context).size.width;
     return Container(
-      //padding: EdgeInsets.only(top: 100, left: 50),
+      padding: size > 750
+          ? EdgeInsets.symmetric(horizontal: 200)
+          : EdgeInsets.symmetric(horizontal: 25),
       width: double.infinity,
-      padding: EdgeInsets.only(bottom: 30),
       decoration: BoxDecoration(
         color: Colors.white,
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        SizedBox(
+          height: 50,
+        ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top: 50, left: 60),
+          margin: EdgeInsets.only(bottom: 100),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
@@ -39,12 +43,18 @@ class FeedbackSection extends StatelessWidget {
           ),
         ),
         Wrap(
+          clipBehavior: Clip.none,
+          spacing: 50,
+          runSpacing: 100,
           children: [
             FeedbackCard(),
             FeedbackCard(),
             FeedbackCard(),
-            FeedbackCard()
+            FeedbackCard(),
           ],
+        ),
+        SizedBox(
+          height: 100,
         )
       ]),
     );

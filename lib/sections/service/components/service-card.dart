@@ -9,10 +9,6 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        top: 20,
-        left: 20,
-      ),
       height: 100,
       width: 120,
       decoration: BoxDecoration(
