@@ -41,52 +41,58 @@ class _ReceWorksState extends State<ReceWorks> {
                 top: -40,
                 child: Center(
                   child: Container(
-                    height: 60,
-                    width: size > 750 ? size * 0.5 : size * 0.8,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0, 20),
-                              color: Colors.black.withOpacity(0.4),
-                              blurRadius: 10)
-                        ]),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.asset("assets/images/email.png"),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Starting a New Project?",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
+                      height: 60,
+                      width: size > 750 ? size * 0.5 : size * 0.8,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 20),
+                                color: Colors.black.withOpacity(0.4),
+                                blurRadius: 10)
+                          ]),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  "assets/images/email.png",
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Starting a New Project?",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "get a detailed estimate",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.black,
-                                    ),
+                                    Text(
+                                      "get a detailed estimate",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            size > 550
+                                ? HireMe(
+                                    scaffoldkey: widget.scaffoldkey,
                                   )
-                                ],
-                              )
-                            ],
-                          ),
-                          HireMe(
-                            scaffoldkey: widget.scaffoldkey,
-                          )
-                        ]),
-                  ),
+                                : SizedBox(),
+                          ])),
                 ),
               )
             ],
@@ -135,8 +141,19 @@ class _ReceWorksState extends State<ReceWorks> {
           ],
         ),
         SizedBox(
-          height: 100,
-        )
+          height: 20,
+        ),
+        size < 450
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  HireMe(scaffoldkey: widget.scaffoldkey),
+                ],
+              )
+            : SizedBox(),
+        SizedBox(
+          height: 80,
+        ),
       ]),
     );
   }

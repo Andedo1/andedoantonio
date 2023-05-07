@@ -290,38 +290,41 @@ class _AboutSectionState extends State<AboutSection> {
               ),
             ],
           ),
+          SizedBox(
+            height: 50,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 30),
                 child: HireMe(scaffoldkey: widget.scaffoldkey),
               ),
-              InkWell(
-                onTap: () async {
+              SizedBox(
+                width: 30,
+              ),
+              ElevatedButton(
+                onPressed: () async {
                   // handle on tap
                   await download(reference);
                 },
-                child: Container(
-                  margin: EdgeInsets.only(top: 30, left: 35),
-                  height: 30,
-                  width: 150,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.black.withOpacity(0.2),
-                      border: Border.all(
-                          color: Colors.black.withOpacity(0.5),
-                          width: 1,
-                          style: BorderStyle.solid)),
-                  child: Center(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset("assets/images/documents.png"),
-                      Text("Download CV"),
-                    ],
-                  )),
-                ),
+                child: Center(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/documents.png"),
+                    Text(
+                      "Download CV",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ],
+                )),
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    side: BorderSide(color: Colors.black38, width: 2),
+                    backgroundColor: Colors.white.withOpacity(0.4),
+                    fixedSize: Size(140, 40),
+                    padding: EdgeInsets.all(10)),
               ),
             ],
           )

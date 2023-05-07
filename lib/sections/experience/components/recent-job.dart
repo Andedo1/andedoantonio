@@ -8,8 +8,8 @@ class RecentJob extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200,
-        width: 400,
+        height: 160,
+        width: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -18,15 +18,15 @@ class RecentJob extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 160,
-              width: 150,
+              height: 120,
+              width: 100,
               decoration: BoxDecoration(
                   color: Colors.brown.withOpacity(0.6),
                   borderRadius: BorderRadius.circular(10)),
               child: Stack(
                 children: [
                   Positioned(
-                      top: 20,
+                      top: 0,
                       right: 0,
                       left: 0,
                       child: Center(

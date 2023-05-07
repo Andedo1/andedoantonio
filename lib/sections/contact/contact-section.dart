@@ -25,7 +25,7 @@ class _ContactSectionState extends State<ContactSection> {
               ? EdgeInsets.symmetric(horizontal: 250)
               : EdgeInsets.symmetric(horizontal: 25),
           width: double.infinity,
-          margin: EdgeInsets.only(top: 100, bottom: 100),
+          margin: EdgeInsets.only(top: 50, bottom: 60),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

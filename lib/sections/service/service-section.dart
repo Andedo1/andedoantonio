@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'components/service-card.dart';
 
 class ServiceSection extends StatelessWidget {
-  const ServiceSection({Key? key}) : super(key: key);
+  const ServiceSection({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +122,7 @@ class ServiceSection extends StatelessWidget {
         ),
         SizedBox(
           height: 100,
-        )
+        ),
       ]),
     );
   }

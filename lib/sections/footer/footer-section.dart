@@ -15,14 +15,23 @@ class FooterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double size = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-      height: 150,
+      padding: size > 750
+          ? EdgeInsets.symmetric(
+              horizontal: 200,
+            )
+          : EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
       width: double.infinity,
       decoration: BoxDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(
+            height: 30,
+          ),
           Text(
             "Follow Me",
             style: TextStyle(fontWeight: FontWeight.bold),
@@ -49,7 +58,7 @@ class FooterSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                width: 25,
+                width: 15,
               ),
               IconButton(
                 splashRadius: 30,
@@ -67,7 +76,7 @@ class FooterSection extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 25,
+                width: 15,
               ),
               IconButton(
                 splashRadius: 30,
@@ -85,7 +94,7 @@ class FooterSection extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 25,
+                width: 15,
               ),
               IconButton(
                 splashRadius: 30,
@@ -103,7 +112,7 @@ class FooterSection extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 25,
+                width: 15,
               ),
               IconButton(
                 splashRadius: 30,
@@ -164,6 +173,9 @@ class FooterSection extends StatelessWidget {
               children: [],
             ),
           ),
+          SizedBox(
+            height: 20,
+          )
         ],
       ),
     );
