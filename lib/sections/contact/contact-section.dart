@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({Key? key, required this.scaffoldKey}) : super(key: key);
@@ -13,6 +14,7 @@ class _ContactSectionState extends State<ContactSection> {
   @override
   Widget build(BuildContext context) {
     final double size = MediaQuery.of(context).size.width;
+    final String email = 'antonnio_andedo@yahoo.com';
     return Container(
       //padding: EdgeInsets.only(top: 100, left: 50),
       width: double.infinity,
@@ -48,7 +50,7 @@ class _ContactSectionState extends State<ContactSection> {
                 height: 20,
               ),
               Text(
-                "You can get in touch with me at any time and I will try my best to get back to you on a short notice. I'm actively seaching for a job and therefore I'll be so grateful for any employment leads. I'm also open to collaboration on open source projects, so don't hesitate to contact me.",
+                "You can get in touch with me at any time and I will try my best to get back to you on a short notice. I'm actively searching for a job and therefore I'll be so grateful for any leads. I'm also open to collaboration on open source projects, so don't hesitate to contact me.",
                 style: TextStyle(
                     wordSpacing: 2.5,
                     fontSize: 20,
@@ -65,7 +67,9 @@ class _ContactSectionState extends State<ContactSection> {
                 children: [
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        lauchEmail(email);
+                      },
                       child: Text(
                         "Contact me",
                         style: TextStyle(color: Colors.white, fontSize: 20),
@@ -86,5 +90,26 @@ class _ContactSectionState extends State<ContactSection> {
         ),
       ]),
     );
+  }
+
+  void lauchEmail(String email) {
+    String? encodeQueryParameters(Map<String, String> params) {
+      return params.entries
+          .map((MapEntry<String, String> e) =>
+              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+          .join('&');
+    }
+
+    // ···
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: email,
+      query: encodeQueryParameters(<String, String>{
+        'subject': 'Type your subject',
+        'body': 'Type your message here'
+      }),
+    );
+
+    launchUrl(emailLaunchUri);
   }
 }

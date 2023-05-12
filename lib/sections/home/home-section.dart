@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'components/glass-content.dart';
 
 class HomeSection extends StatelessWidget {
-  HomeSection({Key? key}) : super(key: key);
-
-  List<String> menuItems = ["About", "Services", "Testimonial", "Contact"];
+  const HomeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +19,26 @@ class HomeSection extends StatelessWidget {
               ),
               fit: BoxFit.cover),
           color: Colors.white),
-      child: Container(
-        margin: EdgeInsets.only(top: 50),
-        width: double.infinity,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Positioned(
-                right: 0,
-                top: 0,
-                bottom: 0,
-                child: Center(
-                  child: GlassContent(
-                    size: size,
-                  ),
-                )),
-          ],
-        ),
-      ),
+      child: size.width > 720
+          ? Container(
+              margin: EdgeInsets.only(top: 50),
+              width: double.infinity,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: Center(
+                        child: GlassContent(
+                          size: size,
+                        ),
+                      )),
+                ],
+              ),
+            )
+          : const SizedBox(),
     );
   }
 }

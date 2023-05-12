@@ -40,7 +40,7 @@ class _AboutSectionState extends State<AboutSection> {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                margin: EdgeInsets.only(top: 20, left: 10),
+                margin: EdgeInsets.only(top: 20),
                 height: 250,
                 width: 300,
                 decoration: BoxDecoration(
